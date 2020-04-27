@@ -8,16 +8,24 @@ public class Main {
         // write your code here
         Scanner scanner;
         scanner = new Scanner(System.in);
-        System.out.println("\n\n\n");
-        System.out.print("Por favor, informe o numerador: ");
-        int numerador = scanner.nextInt();
+        int opt = 1;
+        do {
+            System.out.println("\n\n\n");
+            System.out.print("Por favor, informe o numerador: ");
+            int numerador = scanner.nextInt();
 
-        System.out.print("Por favor, informe o denominador: ");
-        int denominador = scanner.nextInt();
+            System.out.print("Por favor, informe o denominador: ");
+            int denominador = scanner.nextInt();
 
-        int resultado = Divisao.quociente(numerador, denominador);
-        Math.sqrt(25);
-        System.out.printf("\nResultado: %d / %d = %d\n", numerador, denominador, resultado);
+            int resultado = Divisao.quociente(numerador, denominador);
+            Math.sqrt(25);
+            System.out.printf("\nResultado: %d / %d = %d\n", numerador, denominador, resultado);
+
+            System.out.println("Deseja continuar? (1 - sim, 2 - não):");
+            opt = scanner.nextInt();
+        } while (opt == 1);
+        System.out.println("Processo finalizado com sucesso!!!");
+
 
     }
 }
