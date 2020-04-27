@@ -4,7 +4,7 @@ public class Divisao {
     private static int counter = 0;
     private int contadorLocal = 0;
 
-    public static int quociente(int numerador, int denominador) {
+    public static int quociente(int numerador, int denominador) throws ArithmeticException {
         return numerador / denominador;
     }
 }
