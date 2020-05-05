@@ -1,5 +1,6 @@
 package com.fvaladares;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -9,27 +10,32 @@ public class Main {
         Scanner scanner;
         scanner = new Scanner(System.in);
         int opt;
+        boolean continuarLoop = true;
         int resultado = 0;
         do {
-            System.out.println("\n\n\n");
-            System.out.print("Por favor, informe o numerador: ");
-            int numerador = scanner.nextInt();
-
-            System.out.print("Por favor, informe o denominador: ");
-            int denominador = scanner.nextInt();
-
             try {
+                System.out.println("\n\n\n");
+                System.out.print("Por favor, informe o numerador: ");
+                int numerador = scanner.nextInt();
+                System.out.print("Por favor, informe o denominador: ");
+                int denominador = scanner.nextInt();
+                // Pode ocorrer uma exceção (divisão por zero)
                 resultado = Divisao.quociente(numerador, denominador);
                 System.out.printf("\nResultado: %d / %d = %d\n", numerador, denominador, resultado);
+                continuarLoop = false;
             } catch (ArithmeticException e) {
-                System.err.println("O programa falhou, erro: " + e);
-                e.printStackTrace();
+                System.err.printf("Opa, algo estranho aconteceu: %s \n", e);
+                System.out.println("\nDivisão por zero (0) não é permitida. Por favor, tente novamente.");
+            } catch (InputMismatchException e) {
+                System.err.printf("Opa, é constrangedro, mas, algo estranho aconteceu: %s \n", e);
+                scanner.nextLine(); // esvaziar o buffer.
+                System.out.println("\n\nVocê deve inserir apenas valores inteiros. \nPor favor, tente novamente.\n");
             }
 
-
-            System.out.println("\n\nDeseja continuar? (1 - sim, 2 - não):");
-            opt = scanner.nextInt();
-        } while (opt == 1);
+//
+//            System.out.println("\n\nDeseja continuar? (1 - sim, 2 - não):");
+//            opt = scanner.nextInt();
+        } while (continuarLoop);
         System.out.println("Processo finalizado com sucesso!!!");
 
 
